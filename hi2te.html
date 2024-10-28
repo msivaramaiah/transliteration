@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hindi to Telugu Transliteration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+        #output {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hindi to Telugu Transliteration</h1>
+    <textarea id="input" placeholder="Type Hindi text here..."></textarea>
+    <button onclick="transliterate()">Transliterate</button>
+    <div id="output"></div>
+
+    <script>
+        function transliterate() {
+            const hindiText = document.getElementById('input').value;
+            const transliterationMap = {
+                'अ': 'అ', 'आ': 'ఆ', 'इ': 'ఇ', 'ई': 'ఈ', 'उ': 'ఉ', 'ऊ': 'ఊ', 'ऋ': 'ృ', 'ए': 'ఎ', 'ऐ': 'ఐ', 'ओ': 'ఒ', 'औ': 'ఔ', 'अं': 'అం', 'अः': 'అః',
+                'क': 'క', 'ख': 'ఖ', 'ग': 'గ', 'घ': 'ఘ', 'च': 'చ', 'छ': 'ఛ', 'ज': 'జ', 'झ': 'ఝ', 'ट': 'ట', 'ठ': 'ఠ', 'ड': 'డ', 'ढ': 'ఢ', 'ण': 'ణ',
+                'त': 'త', 'थ': 'థ', 'द': 'ద', 'ध': 'ధ', 'न': 'న', 'प': 'ప', 'फ': 'ఫ', 'ब': 'బ', 'भ': 'భ', 'म': 'మ', 'य': 'య', 'र': 'ర', 'ल': 'ల', 'व': 'వ', 'श': 'శ', 'ष': 'ష', 'स': 'స', 'ह': 'హ',
+                'ं': 'ం', 'ः': 'ః', '।': '।', 'नं': 'నం'  // Add more mappings as needed
+            };
+
+            let teluguText = '';
+            for (let char of hindiText) {
+                teluguText += transliterationMap[char] || char; // If no mapping, keep original
+            }
+
+            document.getElementById('output').textContent = teluguText;
+        }
+    </script>
+</body>
+</html>
