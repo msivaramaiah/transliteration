@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,15 +42,41 @@
                 'श': 'శ', 'ष': 'ష', 'स': 'స', 'ह': 'హ',
                 // Special Characters
                 '।': '।', 'नं': 'నం', // Add more mappings as needed
-                // Sepcial Characters part 2
-                'ँ':'ఁ', '्':'్', 'ञ':'ఞ' // Add more mappings as needed
+                // Special Characters part 2
+                'ँ':'ఁ', '्':'్', 'ञ':'ఞ', // Add more mappings as needed
+               
             };
+            const endLetters = ['ब', 'ह', 'ग', 'द', 'ज', 'ड', 'प', 'र', 'क', 'त', 'च', 'ट', 'म', 'न', 'व', 'ल', 'स', 'य', 'ज्ञ', 'त्र', 'क्ष', 'श्र', 'ऋ', 'भ', 'ङ', 'घ', 'ध', 'झ', 'ढ', 'ञ', 'फ', 'ख', 'थ', 'छ', 'ठ', 'ण', 'ळ', 'श', 'ष',
+];
 
+            //सय
+            let oldChar = '';
+            let endChar = endLetters.find(myFunction);
+            function myFunction(value, index, array) {
+              return value == oldChar;
+            }
+            // सयसय सयसय
             let teluguText = '';
             for (let char of hindiText) {
-                teluguText += transliterationMap[char] || char; // If no mapping, keep original
+            if(char == ' ' || char == ',' || char == '.' ){
+                endChar = endLetters.find(myFunction);
+                    if(oldChar == ',' || oldChar == '.'){
+                    teluguText += transliterationMap[char] || char;
+                        oldChar = char;
+                    }else{
+                if(endChar){
+                    teluguText += '్' + char || char;
+                            oldChar = char;
+                   }else{
+                       teluguText += transliterationMap[char] || char; // If no mapping, keep original
+                            oldChar = char;
+                   };
+                    }
+                }else{
+            teluguText += transliterationMap[char] || char; // If no mapping, keep original
+                oldChar = char;
+                }
             }
-            // hi chinnu
             document.getElementById('output').textContent = teluguText;
         }
     </script>
